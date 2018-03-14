@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% include "layout/head.html" %}
+  <!-- datatables -->
+  <link rel="stylesheet" href="/static/datatables/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/datatables/css/select.bootstrap4.min.css">
+  <title>Index</title>
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+
+    {% include "layout/main-header.html" %}
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    {% include "layout/main-sidebar.html" %}
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+            Dasboard
+            <small>progress manajemen barokah</small>
+        </h1>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <div class="row">
+          <div class="col-md-6">
+            <!-- DONUT CHART -->
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Marketing</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body chart-responsive">
+                <div class="chart" id="marketing-chart" style="height: 300px; position: relative;"></div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- DONUT CHART -->
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Training</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body chart-responsive">
+                <div class="chart" id="training-chart" style="height: 300px; position: relative;"></div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col (LEFT) -->
+          <div class="col-md-6">
+            <!-- DONUT CHART -->
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Ekonomi</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body chart-responsive">
+                <div class="chart" id="ekonomi-chart" style="height: 300px; position: relative;"></div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- DONUT CHART -->
+            <div class="box box-danger">
+              <div class="box-header with-border">
+                <h3 class="box-title">Personalia</h3>
+
+                <div class="box-tools pull-right">
+                  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="box-body chart-responsive">
+                <div class="chart" id="personalia-chart" style="height: 300px; position: relative;"></div>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col (RIGHT) -->
+        </div>
+        <!-- /.row -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    {% include "layout/main-footer.html" %}
+
+    <!-- Control Sidebar -->
+    {% include "layout/control-sidebar.html" %}
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 3 -->
+  {% include "layout/js.html" %}
+  <!-- DataTables -->
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.min.js"></script>
+  <!-- page script -->
+  <script src="/static/enterprise/js/index.js"></script>
+</body>
+
+</html>

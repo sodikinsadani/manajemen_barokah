@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% include "layout/head.html" %}
+  <!-- datatables -->
+  <link rel="stylesheet" href="/static/datatables/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="/static/datatables/css/select.bootstrap4.min.css">
+  <title>Member</title>
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+
+    {% include "layout/main-header.html" %}
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    {% include "layout/main-sidebar.html" %}
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+            Laporan Global
+            <small>daftar laporan global</small>
+        </h1>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+          <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Laporan</th>
+                  <th>App</th>
+                  <th>Download</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if report %} {% for r in report %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{r.nama_laporan}}</td>
+                  <td>{{r.app}}</td>
+                  <td><a href="{% url 'enterprise:reportdownload' r.id %}"><i class="glyphicon glyphicon-download-alt"></a></i></td>
+                </tr>
+                {% endfor %} {% endif %}
+              </tbody>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+
+          </div>
+          <!-- /.box-footer-->
+        </div>
+        <!-- /.box -->
+
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    {% include "layout/main-footer.html" %}
+
+    <!-- Control Sidebar -->
+    {% include "layout/control-sidebar.html" %}
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 3 -->
+  {% include "layout/js.html" %}
+  <!-- DataTables -->
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.js"></script>
+  <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.min.js"></script>
+  <!-- page script -->
+  <script src="/static/enterprise/js/report.js"></script>
+</body>
+
+</html>

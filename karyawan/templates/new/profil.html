@@ -1,0 +1,78 @@
+{% extends "layout/base.html" %}
+{% block content %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Profil</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Hi, {{ request.session.username }}
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="width:200px;">Nama</td>
+                                                    <td>: {{ karyawan.nama|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Alamat</td>
+                                                    <td>: {{ karyawan.alamat|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Jenis Kelamin</td>
+                                                    <td>: {{ karyawan.jenis_kelamin|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Jenis Karyawan</td>
+                                                    <td>: {{ karyawan.jenis_karyawan|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">No. Telepon</td>
+                                                    <td>: {{ karyawan.no_telepon }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">E-mail</td>
+                                                    <td>: {{ karyawan.email|lower }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">No. Rekening</td>
+                                                    <td>: {{ karyawan.no_rekening }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Pemilik Rekening</td>
+                                                    <td>: {{ karyawan.pemilik_rekening|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Divisi</td>
+                                                    <td>: {{ karyawan.divisi.nama|title }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:200px;">Jabatan</td>
+                                                    <td>: {{ karyawan.jabatan.nama|title }}</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+            </div>
+        </div>
+{% endblock %}
