@@ -1,17 +1,18 @@
 from django import forms
-from training.models import Peserta
+from training.models import Histpbn, Peserta
 
-class fPeserta(forms.ModelForm):
+class fHistpbn(forms.ModelForm):
     class Meta:
-        model = Peserta
+        model = Histpbn
         fields = '__all__'
         widgets = {
+            'keterangan':forms.Textarea(attrs={'rows':3,}),
         }
 
     def __init__(self, *args, **kwargs):
-        super(fPeserta, self).__init__(*args, **kwargs)
-        self.fields['id_peserta'].widget.attrs['class'] = 'form-control select2'
-        self.fields['id_peserta'].widget.attrs['style'] = 'width: 100%;'
+        super(fHistpbn, self).__init__(*args, **kwargs)
+        self.fields['peserta'].widget.attrs['class'] = 'form-control select2'
+        self.fields['peserta'].widget.attrs['style'] = 'width: 100%;'
         for field in iter(self.fields):
             #get current classes from Meta
             classes = self.fields[field].widget.attrs.get("class")
@@ -23,7 +24,7 @@ class fPeserta(forms.ModelForm):
                 'class': classes
             })
 
-        dict_ph = {'jenjang':'jenjang'}
+        dict_ph = {'tgl_training':'tanggal training'}
 
         for field in iter(self.fields):
             #get current classes from Meta
@@ -37,4 +38,5 @@ class fPeserta(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'placeholder': placeholder
             })
-        self.fields['jenjang'].choices  = [("", "-- jenjang --"),] + list(self.fields["jenjang"].choices)[1:]
+        self.fields['materi'].choices  = [("", "-- materi --"),] + list(self.fields["materi"].choices)[1:]
+        self.fields['trainer'].choices  = [("", "-- trainer --"),] + list(self.fields["trainer"].choices)[1:]

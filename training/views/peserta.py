@@ -54,3 +54,21 @@ class pesertaEdit(View):
             messages.add_message(request, messages.SUCCESS, '''Gagal mengubah data peserta ''')
 
         return HttpResponseRedirect(reverse('training:peserta'))
+
+class pesertaDelete(View):
+    def get_peserta(self, pk):
+        peserta = get_object_or_404(Peserta, pk=pk)
+        return peserta
+
+    def post(self, request, pk):
+        peserta = self.get_peserta(pk)
+        nama_peserta = peserta.id_peserta.individu.nama
+        try :
+            peserta = peserta.delete()
+            messages.add_message(request, messages.SUCCESS, '''
+            Berhasil menghapus {0} dari data peserta
+            '''.format(nama_peserta,))
+        except :
+            messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data peserta ''')
+
+        return HttpResponseRedirect(reverse('training:peserta'))
