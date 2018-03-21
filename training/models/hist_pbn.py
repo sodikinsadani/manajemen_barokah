@@ -10,7 +10,7 @@ class Histpbn(models.Model):
     keterangan = models.TextField(max_length=500,blank=True,null=True)
 
     class Meta:
-        ordering = ('peserta','materi',)
+        ordering = ('-tgl_training','peserta','materi',)
         unique_together = ('peserta','materi','tgl_training','keterangan','trainer')
 
     def __str__(self):
