@@ -2,7 +2,10 @@ function setForm(data){
   $("#id_member").val(data[2]).trigger("change");
   $("#id_jumlah").val(data[4])
   $("#id_tgl_setor").val(data[5])
-  $("#id_keterangan").val(data[6])
+  $("#id_jenis_insod option").filter(function() {
+    return $(this).text().toUpperCase() == data[6].toUpperCase()
+  }).prop('selected', true);
+  $("#id_keterangan").val(data[7])
 }
 
 function showForm (actionselect, data) {
@@ -45,7 +48,7 @@ function showForm (actionselect, data) {
 $(function(){
   var table = $('#example1').DataTable({
     "columnDefs":[
-      {"targets":[1,2,6],
+      {"targets":[1,2,6,7],
     "visible":false}
   ],
   select: true,

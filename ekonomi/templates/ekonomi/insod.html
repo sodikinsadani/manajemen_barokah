@@ -91,6 +91,9 @@
                               {{ form.tgl_setor }}
                             </div>
                             <div class="form-group">
+                              {{ form.jenis_insod }}
+                            </div>
+                            <div class="form-group">
                               {{ form.keterangan }}
                             </div>
                           </div>
@@ -137,6 +140,7 @@
                   <th>Member</th>
                   <th>Jumlah</th>
                   <th>Tanggal Setor</th>
+                  <th>Jenis Insod</th>
                   <th>Keterangan</th>
                 </tr>
               </thead>
@@ -149,6 +153,7 @@
                   <td>{{i.member.individu.nama|upper}}</td>
                   <td>{{i.jumlah}}</td>
                   <td>{{i.tgl_setor|date:'m/d/Y'}}</td>
+                  <td>{{i.get_jenis_insod_display}}</td>
                   <td>{{i.keterangan}}</td>
                 </tr>
                 {% endfor %}

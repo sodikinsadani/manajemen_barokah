@@ -24,7 +24,7 @@ class fInsod(forms.ModelForm):
                 'class': classes
             })
 
-        dict_ph = {'tgl_setor':'tanggal setor'}
+        dict_ph = {'tgl_setor':'tanggal setor','jenis_insod':'jenis insod'}
 
         for field in iter(self.fields):
             #get current classes from Meta
@@ -38,3 +38,5 @@ class fInsod(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'placeholder': placeholder
             })
+
+        self.fields['jenis_insod'].choices  = [("", "-- jenis insod --"),] + list(self.fields["jenis_insod"].choices)[1:]
