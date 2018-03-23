@@ -10,6 +10,7 @@ urlpatterns = [
     path('', enterprise_views.index.as_view(), name='index'),
     path('login/', homepage_views.login_view, name='login'),
     path('logout/', homepage_views.logout_view, name='logout'),
+    path('marketing/', include('marketing.urls')),
     path('training/', include('training.urls')),
     path('ekonomi/', include('ekonomi.urls')),
     path('personalia/', include('personalia.urls')),

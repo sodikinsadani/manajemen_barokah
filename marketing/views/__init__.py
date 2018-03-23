@@ -1,0 +1,1 @@
+from .konsumen import *

@@ -74,7 +74,7 @@ class Member(models.Model):
     tgl_input = models.DateTimeField(default=timezone.now)
 
     class Meta:
-        ordering = ('status_aktif','jenjang',)
+        ordering = ('status_aktif','jenjang','individu__nama')
 
     def __str__(self): # __unicode__ on Python 2
         return '{}'.format(self.individu)

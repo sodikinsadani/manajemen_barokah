@@ -28,6 +28,17 @@
       <li><a href="{% url 'index' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
       <li class="treeview">
         <a href="#">
+          <i class="fa fa-cubes"></i> <span>Marketing</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{% url 'marketing:konsumen' %}"><i class="fa fa-user text-yellow"></i> Data Konsumen</a></li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="#">
           <i class="fa fa-graduation-cap"></i> <span>Training</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
