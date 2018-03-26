@@ -24,7 +24,7 @@ class Sales(models.Model):
 class Konsumen(models.Model):
     PILIH_STASUS = [
         ('1','pendekatan'),('2','pendataan'),('3','pengkondisian'),
-        ('4','pengisian'),('5','pengajakan'),('6','finish')
+        ('4','pengisian'),('5','pengajakan'),
     ]
     PILIH_SA = [
         ('ak','AK'),('pa','PA'),('bk1','BK_1'),('bk2','BK_2'),('bk3','BK_3')
@@ -39,7 +39,7 @@ class Konsumen(models.Model):
         primary_key=True
     )
     status = models.CharField(max_length=1,
-        choices=PILIH_STASUS,default='1')
+        choices=PILIH_STASUS)
     tgl_finish = models.DateField(blank=True,null=True)
     status_aktif = models.CharField(max_length=5,choices=PILIH_SA,blank=True,null=True)
     segmentasi = models.CharField(max_length=1,choices=PILIH_SEG,blank=True,null=True)

@@ -9,13 +9,16 @@ from django.urls import reverse
 from personalia.forms import fIndividu
 from personalia.models import Individu
 from django.db import transaction
+import datetime
+from personalia.models import Member
+from django.utils import timezone
 
 class konsumen(View):
     form_class = (fIndividu,fKonsumen)
     template_name = 'marketing/konsumen.html'
 
     def get_konsumen(self):
-        konsumen = Konsumen.objects.all()
+        konsumen = Konsumen.objects.all().exclude(status='9')
         return konsumen
 
     def get(self, request):
@@ -91,5 +94,46 @@ class konsumenDelete(View):
             '''.format(nama_individu,))
         except :
             messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data konsumen ''')
+
+        return HttpResponseRedirect(reverse('marketing:konsumen'))
+
+class konsumenFinish(View):
+    form_class = (fIndividu,fKonsumen)
+
+    def get_individu(self, pk):
+        individu = get_object_or_404(Individu, pk=pk)
+        return individu
+
+    def get_konsumen(self, pk):
+        konsumen = get_object_or_404(Konsumen, pk=pk)
+        return konsumen
+
+    def post(self, request, pk):
+        individu = self.get_individu(pk)
+        nama_konsumen = individu.nama
+
+        '''konsumen = self.get_konsumen(pk)
+        raise Exception(konsumen.warga_media)'''
+        try :
+            konsumen = self.get_konsumen(pk)
+            konsumen.status = '9'
+            tgl_finish = request.POST['tgl_finish'].split('/')
+            tgl_finish = datetime.date(int(tgl_finish[2]), int(tgl_finish[0]), int(tgl_finish[1]))
+            konsumen.tgl_finish = tgl_finish
+            konsumen.save()
+
+            member = Member(
+                individu = individu, jenjang='0', tgl_daftar=tgl_finish,
+                status_aktif=konsumen.status_aktif,segmentasi=konsumen.segmentasi,
+                pangkal=konsumen.sales.sales_id.pangkal,warga_media=konsumen.warga_media,
+                keterangan=konsumen.keterangan#,tgl_input=timezone.now()
+            )
+            member.save()
+
+            messages.add_message(request, messages.SUCCESS, '''
+            Berhasil mengubah data {0} menjadi data finish
+            '''.format(nama_konsumen,))
+        except :
+            messages.add_message(request, messages.SUCCESS, '''Gagal mengubah data finish ''')
 
         return HttpResponseRedirect(reverse('marketing:konsumen'))

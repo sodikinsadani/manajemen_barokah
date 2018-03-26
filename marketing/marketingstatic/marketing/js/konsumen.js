@@ -29,7 +29,7 @@ $("#id_segmentasi option").filter(function() {
     return $(this).text().toUpperCase() == data[16].toUpperCase();
 }).prop('selected', true);
 $("#id_sales").val(data[17]).trigger("change");
-if (data[18] == 'True') {
+if (data[19] == 'True') {
   $("#id_warga_media").prop("checked", true);
 } else {
   $("#id_warga_media").prop("checked", false);
@@ -39,7 +39,7 @@ $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
   radioClass   : 'iradio_flat-green'
 })
 
-$("#id_keterangan").val(data[19])
+$("#id_keterangan").val(data[20])
 }
 
 function showForm (actionselect, data) {
@@ -61,7 +61,7 @@ function showForm (actionselect, data) {
     $('#btnsave').show()
     $('#btnreset').show()
     $("form").attr('action', '/marketing/konsumen/'+data[1]+'/edit/');
-    $('#id_tgl_finish').show()
+    $('#id_tgl_finish').hide()
   } else if (actionselect == 2) {
     $('#modal-default').find('.modal-title').text('Hapus Konsumen')
     $("form .box-body :input").prop("disabled", true)
@@ -70,14 +70,24 @@ function showForm (actionselect, data) {
     $('#btnsave').show()
     $('#btnreset').hide()
     $("form").attr('action', '/marketing/konsumen/'+data[1]+'/delete/');
-    $('#id_tgl_finish').show()
+    $('#id_tgl_finish').hide()
   } else if (actionselect == 4) {
     $('#modal-default').find('.modal-title').text('Data Konsumen')
     $("form .box-body :input").prop("disabled", true)
     setForm(data)
     $('#btnsave').hide()
     $('#btnreset').hide()
+    $('#id_tgl_finish').hide()
+  } else if (actionselect == 5) {
+    $('#modal-default').find('.modal-title').text('Finish Konsumen')
+    $("form .box-body :input").prop("disabled", true)
+    $("#id_tgl_finish").prop("disabled", false)
+    setForm(data)
+    $('#btnsave').text('Finish')
+    $('#btnsave').show()
+    $('#btnreset').hide()
     $('#id_tgl_finish').show()
+    $("form").attr('action', '/marketing/konsumen/'+data[1]+'/finish/');
   }
 
   $('#modal-default').modal('toggle');
@@ -86,7 +96,7 @@ function showForm (actionselect, data) {
 $(function(){
   var table = $('#example1').DataTable({
     "columnDefs":[
-      {"targets":[1,3,4,6,7,8,9,10,11,12,14,16,18,19],
+      {"targets":[1,3,4,6,7,8,9,10,11,12,14,16,17,19,20],
     "visible":false}
   ],
   select: true,

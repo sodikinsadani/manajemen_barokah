@@ -61,6 +61,9 @@
                   <li>
                     <a href="#">View</a>
                   </li>
+                  <li>
+                    <a href="#">Finish</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -197,6 +200,7 @@
                   <th>Tanggal Finish</th>
                   <th>Status Aktif</th>
                   <th>Segmentasi</th>
+                  <th>ID Sales</th>
                   <th>Sales</th>
                   <th>Warga Media</th>
                   <th>Keterangan</th>
@@ -222,6 +226,7 @@
                   <td>{{m.tgl_finish|date:'m/d/Y'}}</td>
                   <td>{{m.get_status_aktif_display}}</td>
                   <td>{{m.get_segmentasi_display}}</td>
+                  <td>{{m.sales.sales_id.individu.id}}</td>
                   <td>{{m.sales|title}}</td>
                   <td>{{m.warga_media}}</td>
                   <td>{{m.keterangan|title}}</td>
