@@ -7,7 +7,7 @@ function setForm(data){
   $("#id_target").val(data[5]);
   $("#id_stok").val(data[6])
   $("#id_terjual").val(data[7]);
-  $("#id_sisa").val(data[8])
+  //$("#id_sisa").val(data[8])
   $("#id_keterangan").val(data[9])
 }
 

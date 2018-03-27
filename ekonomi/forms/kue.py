@@ -4,7 +4,7 @@ from ekonomi.models import Kue
 class fKue(forms.ModelForm):
     class Meta:
         model = Kue
-        fields = '__all__'
+        exclude = ['sisa',]
         widgets = {
             'keterangan':forms.Textarea(attrs={'rows':3,}),
         }

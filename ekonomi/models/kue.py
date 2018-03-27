@@ -16,6 +16,11 @@ class Kue(models.Model):
     sisa = models.IntegerField()
     keterangan = models.TextField(max_length=500,blank=True,null=True)
 
+    def save(self, *args, **kwargs):
+        self.sisa = self.target - self.terjual
+
+        super(Kue, self).save(*args, **kwargs)
+
     class Meta:
         ordering = ('jenis_kue','nama_kue',)
 
