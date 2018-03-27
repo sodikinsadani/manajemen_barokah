@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from django.shortcuts import render
 from ekonomi.models import Insod
 from ekonomi.forms import fInsod
 from django.contrib import messages
