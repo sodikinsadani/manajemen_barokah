@@ -9,4 +9,7 @@ urlpatterns = [
     path('kue/', views.kue.as_view(), name='kue'),
     path('kue/<int:pk>/edit/', views.kueEdit.as_view(), name='kueEdit'),
     path('kue/<int:pk>/delete/', views.kueDelete.as_view(), name='kueDelete'),
+    path('penjualankue/', views.penjualanKue.as_view(), name='penjualankue'),
+    path('penjualankue/<int:pk>/edit/', views.penjualankueEdit.as_view(), name='penjualankueEdit'),
+    path('penjualankue/<int:pk>/delete/', views.penjualankueDelete.as_view(), name='penjualankueDelete'),
 ]
