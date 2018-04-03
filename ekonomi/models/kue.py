@@ -30,8 +30,8 @@ class Kue(models.Model):
 
 class Penjualan(models.Model):
     PILIH_JENIS_TRANSAKSI = [
-        ('1','jual'),('2','cancel'),#('3','ambil'),
-        #('4','reture'),
+        ('1','jual'),('2','cancel'),('3','ambil'),
+        ('4','reture'),
     ]
 
     nama_konsumen = models.CharField(max_length=100)
@@ -46,7 +46,7 @@ class Penjualan(models.Model):
         null=True
     )
     jumlah = models.IntegerField()
-    jenis_transaksi = models.CharField(max_length=2,choices=PILIH_JENIS_TRANSAKSI,blank=True,null=True)
+    jenis_transaksi = models.CharField(max_length=2,choices=PILIH_JENIS_TRANSAKSI)
     is_terkirim = models.BooleanField(default=False)
     tgl_kirim = models.DateField(blank=True,null=True)
     tgl_penjualan = models.DateField(blank=True,null=True)

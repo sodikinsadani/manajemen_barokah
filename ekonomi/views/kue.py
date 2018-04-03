@@ -6,6 +6,66 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+class UpdateStok:
+
+    def get_kue(self, pk):
+        kue = get_object_or_404(Kue, pk=pk)
+        return kue
+
+    def update_stok(self,params):
+        kue = self.get_kue(params.kue.id)
+        if params.jenis_transaksi == '1':
+            terjual = kue.terjual + params.jumlah
+            kue.terjual = terjual
+        elif params.jenis_transaksi == '2':
+            terjual = kue.terjual - params.jumlah
+            kue.terjual = terjual
+        elif params.jenis_transaksi == '3':
+            stok = kue.stok - params.jumlah
+            kue.stok = stok
+        elif params.jenis_transaksi == '4':
+            stok = kue.stok + params.jumlah
+            kue.stok = stok
+        else :
+            raise Exception('errors update_stok')
+        kue.save()
+
+    def update_delete(self,params):
+        kue = self.get_kue(params.kue.id)
+        if params.jenis_transaksi == '1':
+            terjual = kue.terjual - params.jumlah
+            kue.terjual = terjual
+        elif params.jenis_transaksi == '2':
+            terjual = kue.terjual + params.jumlah
+            kue.terjual = terjual
+        elif params.jenis_transaksi == '3':
+            stok = kue.stok + params.jumlah
+            kue.stok = stok
+        elif params.jenis_transaksi == '4':
+            stok = kue.stok - params.jumlah
+            kue.stok = stok
+        else :
+            raise Exception('errors update_delete')
+        kue.save()
+
+    def update_update(self,params,jenis_transaksi):
+        kue = self.get_kue(params.kue.id)
+        if jenis_transaksi == '1':
+            terjual = kue.terjual - params.jumlah
+            kue.terjual = terjual
+        elif jenis_transaksi == '2':
+            terjual = kue.terjual + params.jumlah
+            kue.terjual = terjual
+        elif jenis_transaksi == '3':
+            stok = kue.stok + params.jumlah
+            kue.stok = stok
+        elif jenis_transaksi == '4':
+            stok = kue.stok - params.jumlah
+            kue.stok = stok
+        else :
+            raise Exception('errors update_delete')
+        kue.save()
+
 class kue(View):
     form_class = (fKue)
     template_name = 'ekonomi/kue.html'
@@ -93,6 +153,8 @@ class penjualanKue(View):
       #raise Exception(form.errors)
       if form.is_valid() :
           penjualan = form.save()
+          update_stok = UpdateStok()
+          update_stok.update_stok(penjualan)
           messages.add_message(request, messages.SUCCESS, '''Berhasil menambah {0} ke dalam data transaksi penjualan
           Silahkan input kembali data lainnya'''.format(penjualan.nama_konsumen.upper(),))
       else :
@@ -109,11 +171,19 @@ class penjualankueEdit(View):
 
     def post(self, request, pk):
         penjualan = self.get_penjualan_kue(pk)
+        jumlah = penjualan.jumlah
+        jenis_transaksi = penjualan.jenis_transaksi
 
         nama_penjualan = penjualan.nama_konsumen
         form = self.form_class(request.POST, instance=penjualan)
         if form.is_valid() :
             penjualan = form.save()
+            update_stok = UpdateStok()
+            if penjualan.jenis_transaksi == jenis_transaksi :
+                penjualan.jumlah = penjualan.jumlah - jumlah
+            else :
+                update_stok.update_update(penjualan,jenis_transaksi)
+            update_stok.update_stok(penjualan)
             messages.add_message(request, messages.SUCCESS, '''
             Berhasil mengubah data {0} dari data transaksi penjualan kue
             '''.format(nama_penjualan,))
@@ -129,13 +199,16 @@ class penjualankueDelete(View):
 
     def post(self, request, pk):
         penjualan = self.get_penjualan_kue(pk)
+        params = penjualan
         nama_penjualan = penjualan.nama_konsumen
         try :
             penjualan = penjualan.delete()
+            update_stok = UpdateStok()
+            update_stok.update_delete(params)
             messages.add_message(request, messages.SUCCESS, '''
             Berhasil menghapus {0} dari data transaksi penjualan kue
             '''.format(nama_penjualan,))
         except :
-            messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data trnasaksi penjualan kue ''')
+            messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data tranasaksi penjualan kue ''')
 
         return HttpResponseRedirect(reverse('ekonomi:penjualankue'))
