@@ -84,3 +84,26 @@ class PengambilanSales(models.Model):
 
     def __str__(self):
         return self.kue
+
+class PengambilanAgen(models.Model):
+    PILIH_JENIS_TRANSAKSI = [
+        ('5','ambil'),
+        ('6','reture'),
+    ]
+
+    kue = models.ForeignKey(
+        Kue,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    kurir = models.CharField(max_length=50)
+    jumlah = models.IntegerField()
+    jenis_transaksi = models.CharField(max_length=2,choices=PILIH_JENIS_TRANSAKSI)
+    tgl_ambil = models.DateField(blank=True,null=True)
+    keterangan = models.TextField(max_length=500,blank=True,null=True)
+
+    class Meta:
+        ordering = ('kurir','kue__nama_kue',)
+
+    def __str__(self):
+        return self.kue

@@ -15,4 +15,5 @@ urlpatterns = [
     path('pengambilankuesales/', views.pengambilankuesalesKue.as_view(), name='pengambilankuesales'),
     path('pengambilankuesales/<int:pk>/edit/', views.pengambilankuesalesEdit.as_view(), name='pengambilankuesalesEdit'),
     path('pengambilankuesales/<int:pk>/delete/', views.pengambilankuesalesDelete.as_view(), name='pengambilankuesalesDelete'),
+    path('pengambilankueagen/', views.pengambilankueagen.as_view(), name='pengambilankueagen'),
 ]

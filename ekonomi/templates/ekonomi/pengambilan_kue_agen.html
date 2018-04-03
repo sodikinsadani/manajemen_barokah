@@ -6,7 +6,7 @@
   <!-- datatables -->
   <link rel="stylesheet" href="/static/datatables/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="/static/datatables/css/select.bootstrap4.min.css">
-  <title>Penjualan Kue</title>
+  <title>Pengambilan Kue Agen</title>
 </head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -27,8 +27,8 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-            Penjualan
-            <small>data penjualan kue</small>
+            Pengambilan Kue
+            <small>data pengambilan kue agen</small>
         </h1>
       </section>
 
@@ -82,13 +82,10 @@
                         <div class="row">
                           <div class="col-md-12">
                             <div class="form-group">
-                              {{ form.nama_konsumen }}
-                            </div>
-                            <div class="form-group">
                               {{ form.kue }}
                             </div>
                             <div class="form-group">
-                              {{ form.sales }}
+                              {{ form.kurir }}
                             </div>
                             <div class="form-group">
                               {{ form.jumlah }}
@@ -96,14 +93,8 @@
                             <div class="form-group">
                               {{ form.jenis_transaksi }}
                             </div>
-                            <!--div class="form-group">
-                              {{ form.is_terkirim }} Sudah Dikirim
-                            </div>
                             <div class="form-group">
-                              {{ form.tgl_kirim }}
-                            </div-->
-                            <div class="form-group">
-                              {{ form.tgl_penjualan }}
+                              {{ form.tgl_ambil }}
                             </div>
                             <div class="form-group">
                               {{ form.keterangan }}
@@ -148,34 +139,26 @@
                 <tr>
                   <th>No</th>
                   <th>ID</th>
-                  <th>Nama Konsumen</th>
                   <th>ID Kue</th>
                   <th>Nama Kue</th>
-                  <th>ID Sales</th>
-                  <th>Nama Sales</th>
+                  <th>Nama Kurir</th>
                   <th>Jumlah</th>
                   <th>Jenis Transaksi</th>
-                  <!--th>Terkirim</th>
-                  <th>Tanggal Kirim</th-->
-                  <th>Tanggal Penjualan</th>
+                  <th>Tanggal Pengambilan</th>
                   <th>Keterangan</th>
                 </tr>
               </thead>
               <tbody>
-                {% for p in penjualan %}
+                {% for p in pengambilan %}
                 <tr>
                   <td>{{forloop.counter}}</td>
                   <td>{{p.id}}</td>
-                  <td>{{p.nama_konsumen|upper}}</td>
                   <td>{{p.kue.id}}</td>
                   <td>{{p.kue}}</td>
-                  <td>{{p.sales.individu.id}}</td>
-                  <td>{{p.sales}}</td>
+                  <td>{{p.kurir}}</td>
                   <td>{{p.jumlah}}</td>
                   <td>{{p.get_jenis_transaksi_display}}</td>
-                  <!--td>{{p.is_terkirim}}</td>
-                  <td>{{p.tgl_kirim|date:'m/d/Y'}}</td-->
-                  <td>{{p.tgl_penjualan|date:'m/d/Y'}}</td>
+                  <td>{{p.tgl_ambil|date:'m/d/Y'}}</td>
                   <td>{{p.keterangan}}</td>
                 </tr>
                 {% endfor %}
@@ -210,7 +193,7 @@
   <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.js"></script>
   <script src="/static/AdminLTE-2.4.3/bower_components/datatables.net/js/dataTables.select.min.js"></script>
   <!-- page script -->
-  <script src="/static/ekonomi/js/penjualan_kue.js"></script>
+  <script src="/static/ekonomi/js/pengambilan_kue_agen.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from ekonomi.models import Kue, Penjualan, PengambilanSales
-from ekonomi.forms import fKue, fPenjualanKue, fPengambilanKueSales
+from ekonomi.models import Kue, Penjualan, PengambilanSales, PengambilanAgen
+from ekonomi.forms import fKue, fPenjualanKue, fPengambilanKueSales, fPengambilanKueAgen
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -26,6 +26,12 @@ class UpdateStok:
         elif params.jenis_transaksi == '4':
             stok = kue.stok + params.jumlah
             kue.stok = stok
+        elif params.jenis_transaksi == '5':
+            stok = kue.stok + params.jumlah
+            kue.stok = stok
+        elif params.jenis_transaksi == '6':
+            stok = kue.stok - params.jumlah
+            kue.stok = stok
         else :
             raise Exception('errors update_stok')
         kue.save()
@@ -43,6 +49,12 @@ class UpdateStok:
             kue.stok = stok
         elif params.jenis_transaksi == '4':
             stok = kue.stok - params.jumlah
+            kue.stok = stok
+        elif params.jenis_transaksi == '5':
+            stok = kue.stok - params.jumlah
+            kue.stok = stok
+        elif params.jenis_transaksi == '6':
+            stok = kue.stok + params.jumlah
             kue.stok = stok
         else :
             raise Exception('errors update_delete')
@@ -289,3 +301,32 @@ class pengambilankuesalesDelete(View):
             messages.add_message(request, messages.SUCCESS, '''Gagal menghapus data tranasaksi pengambilan kue sales ''')
 
         return HttpResponseRedirect(reverse('ekonomi:pengambilankuesales'))
+
+class pengambilankueagen(View):
+    form_class = (fPengambilanKueAgen)
+    template_name = 'ekonomi/pengambilan_kue_agen.html'
+
+    def get_pengambilan(self):
+      pengambilan = PengambilanAgen.objects.all()
+      return pengambilan
+
+    def get(self, request):
+      context = {
+          'pengambilan' : self.get_pengambilan(),
+          'form' : self.form_class,
+      }
+
+      return render(request, self.template_name, context)
+
+    def post(self, request):
+      form = self.form_class(request.POST)
+      if form.is_valid() :
+          pengambilan = form.save()
+          update_stok = UpdateStok()
+          update_stok.update_stok(pengambilan)
+          messages.add_message(request, messages.SUCCESS, '''Berhasil menambah {0} ke dalam data transaksi pengambilan kue agen
+          Silahkan input kembali data lainnya'''.format(pengambilan.kue.nama_kue.upper(),))
+      else :
+          messages.add_message(request, messages.WARNING, '''Gagal menambahkan data transaksi pengambilan kue agen
+          ''')
+      return HttpResponseRedirect(reverse('ekonomi:pengambilankueagen'))
