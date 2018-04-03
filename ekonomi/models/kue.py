@@ -30,8 +30,8 @@ class Kue(models.Model):
 
 class Penjualan(models.Model):
     PILIH_JENIS_TRANSAKSI = [
-        ('1','jual'),('2','cancel'),('3','ambil'),
-        ('4','reture'),
+        ('1','jual'),('2','cancel'),#('3','ambil'),
+        #('4','reture'),
     ]
 
     nama_konsumen = models.CharField(max_length=100)
@@ -47,13 +47,13 @@ class Penjualan(models.Model):
     )
     jumlah = models.IntegerField()
     jenis_transaksi = models.CharField(max_length=2,choices=PILIH_JENIS_TRANSAKSI)
-    is_terkirim = models.BooleanField(default=False)
-    tgl_kirim = models.DateField(blank=True,null=True)
+    #is_terkirim = models.BooleanField(default=False)
+    #tgl_kirim = models.DateField(blank=True,null=True)
     tgl_penjualan = models.DateField(blank=True,null=True)
     keterangan = models.TextField(max_length=500,blank=True,null=True)
 
     class Meta:
-        ordering = ('is_terkirim','sales__individu__nama','nama_konsumen','kue__nama_kue','is_terkirim')
+        ordering = ('sales__individu__nama','nama_konsumen','kue__nama_kue',)
 
     def __str__(self):
         return self.nama_konsumen

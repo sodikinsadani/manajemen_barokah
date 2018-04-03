@@ -96,12 +96,12 @@
                             <div class="form-group">
                               {{ form.jenis_transaksi }}
                             </div>
-                            <div class="form-group">
+                            <!--div class="form-group">
                               {{ form.is_terkirim }} Sudah Dikirim
                             </div>
                             <div class="form-group">
                               {{ form.tgl_kirim }}
-                            </div>
+                            </div-->
                             <div class="form-group">
                               {{ form.tgl_penjualan }}
                             </div>
@@ -155,8 +155,8 @@
                   <th>Nama Sales</th>
                   <th>Jumlah</th>
                   <th>Jenis Transaksi</th>
-                  <th>Terkirim</th>
-                  <th>Tanggal Kirim</th>
+                  <!--th>Terkirim</th>
+                  <th>Tanggal Kirim</th-->
                   <th>Tanggal Penjualan</th>
                   <th>Keterangan</th>
                 </tr>
@@ -173,8 +173,8 @@
                   <td>{{p.sales}}</td>
                   <td>{{p.jumlah}}</td>
                   <td>{{p.get_jenis_transaksi_display}}</td>
-                  <td>{{p.is_terkirim}}</td>
-                  <td>{{p.tgl_kirim|date:'m/d/Y'}}</td>
+                  <!--td>{{p.is_terkirim}}</td>
+                  <td>{{p.tgl_kirim|date:'m/d/Y'}}</td-->
                   <td>{{p.tgl_penjualan|date:'m/d/Y'}}</td>
                   <td>{{p.keterangan}}</td>
                 </tr>

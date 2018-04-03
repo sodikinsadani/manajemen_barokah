@@ -6,18 +6,18 @@ function setForm(data){
   $("#id_jenis_transaksi option").filter(function() {
     return $(this).text().toUpperCase() == data[8].toUpperCase()
   }).prop('selected', true);
-  if (data[9] == 'True') {
+  /*if (data[9] == 'True') {
     $("#id_is_terkirim").prop("checked", true);
   } else {
     $("#id_is_terkirim").prop("checked", false);
   }
-  $("#id_tgl_kirim").val(data[10]);
-  $("#id_tgl_penjualan").val(data[11])
-  $("#id_keterangan").val(data[12])
-  $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+  $("#id_tgl_kirim").val(data[10]);*/
+  $("#id_tgl_penjualan").val(data[9])
+  $("#id_keterangan").val(data[10])
+  /*$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
-  })
+  })*/
 }
 
 function showForm (actionselect, data) {
@@ -77,9 +77,9 @@ $(function(){
   })
 
   //Date picker
-  $('#id_tgl_kirim').datepicker({
+  /*$('#id_tgl_kirim').datepicker({
     autoclose: true
-  })
+  })*/
 
   $('#id_tgl_penjualan').datepicker({
     autoclose: true

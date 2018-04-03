@@ -20,15 +20,16 @@ class UpdateStok:
         elif params.jenis_transaksi == '2':
             terjual = kue.terjual - params.jumlah
             kue.terjual = terjual
-        elif params.jenis_transaksi == '3':
+        else :
+            raise Exception('errors update_stok')
+        kue.save()
+
+        '''elif params.jenis_transaksi == '3':
             stok = kue.stok - params.jumlah
             kue.stok = stok
         elif params.jenis_transaksi == '4':
             stok = kue.stok + params.jumlah
-            kue.stok = stok
-        else :
-            raise Exception('errors update_stok')
-        kue.save()
+            kue.stok = stok'''
 
     def update_delete(self,params):
         kue = self.get_kue(params.kue.id)
@@ -38,17 +39,18 @@ class UpdateStok:
         elif params.jenis_transaksi == '2':
             terjual = kue.terjual + params.jumlah
             kue.terjual = terjual
-        elif params.jenis_transaksi == '3':
+        else :
+            raise Exception('errors update_delete')
+        kue.save()
+        
+        '''elif params.jenis_transaksi == '3':
             stok = kue.stok + params.jumlah
             kue.stok = stok
         elif params.jenis_transaksi == '4':
             stok = kue.stok - params.jumlah
-            kue.stok = stok
-        else :
-            raise Exception('errors update_delete')
-        kue.save()
+            kue.stok = stok'''
 
-    def update_update(self,params,jenis_transaksi):
+    '''def update_update(self,params,jenis_transaksi):
         kue = self.get_kue(params.kue.id)
         if jenis_transaksi == '1':
             terjual = kue.terjual - params.jumlah
@@ -64,7 +66,7 @@ class UpdateStok:
             kue.stok = stok
         else :
             raise Exception('errors update_delete')
-        kue.save()
+        kue.save()'''
 
 class kue(View):
     form_class = (fKue)
@@ -181,8 +183,8 @@ class penjualankueEdit(View):
             update_stok = UpdateStok()
             if penjualan.jenis_transaksi == jenis_transaksi :
                 penjualan.jumlah = penjualan.jumlah - jumlah
-            else :
-                update_stok.update_update(penjualan,jenis_transaksi)
+            '''else :
+                update_stok.update_update(penjualan,jenis_transaksi)'''
             update_stok.update_stok(penjualan)
             messages.add_message(request, messages.SUCCESS, '''
             Berhasil mengubah data {0} dari data transaksi penjualan kue

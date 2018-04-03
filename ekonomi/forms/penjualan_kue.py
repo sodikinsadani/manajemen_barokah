@@ -15,7 +15,7 @@ class fPenjualanKue(forms.ModelForm):
         self.fields['kue'].widget.attrs['style'] = 'width: 100%;'
         self.fields['sales'].widget.attrs['class'] = 'form-control select2'
         self.fields['sales'].widget.attrs['style'] = 'width: 100%;'
-        self.fields['is_terkirim'].widget.attrs['class'] = 'flat-red'
+        #self.fields['is_terkirim'].widget.attrs['class'] = 'flat-red'
         for field in iter(self.fields):
             #get current classes from Meta
             classes = self.fields[field].widget.attrs.get("class")
