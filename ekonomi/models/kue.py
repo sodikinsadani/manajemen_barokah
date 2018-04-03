@@ -57,3 +57,30 @@ class Penjualan(models.Model):
 
     def __str__(self):
         return self.nama_konsumen
+
+class PengambilanSales(models.Model):
+    PILIH_JENIS_TRANSAKSI = [
+        ('3','ambil'),
+        ('4','reture'),
+    ]
+
+    kue = models.ForeignKey(
+        Kue,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    sales = models.ForeignKey(
+        Member,
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    jumlah = models.IntegerField()
+    jenis_transaksi = models.CharField(max_length=2,choices=PILIH_JENIS_TRANSAKSI)
+    tgl_ambil = models.DateField(blank=True,null=True)
+    keterangan = models.TextField(max_length=500,blank=True,null=True)
+
+    class Meta:
+        ordering = ('sales__individu__nama','kue__nama_kue',)
+
+    def __str__(self):
+        return self.kue

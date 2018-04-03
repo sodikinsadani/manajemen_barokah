@@ -1,51 +1,40 @@
 function setForm(data){
-  $("#id_nama_konsumen").val(data[2]);
-  $("#id_kue").val(data[3]).trigger("change");
-  $("#id_sales").val(data[5]).trigger("change");
-  $("#id_jumlah").val(data[7])
+  $("#id_kue").val(data[2]).trigger("change");
+  $("#id_sales").val(data[4]).trigger("change");
+  $("#id_jumlah").val(data[6])
   $("#id_jenis_transaksi option").filter(function() {
-    return $(this).text().toUpperCase() == data[8].toUpperCase()
+    return $(this).text().toUpperCase() == data[7].toUpperCase()
   }).prop('selected', true);
-  /*if (data[9] == 'True') {
-    $("#id_is_terkirim").prop("checked", true);
-  } else {
-    $("#id_is_terkirim").prop("checked", false);
-  }
-  $("#id_tgl_kirim").val(data[10]);*/
-  $("#id_tgl_penjualan").val(data[9])
-  $("#id_keterangan").val(data[10])
-  /*$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-    checkboxClass: 'icheckbox_flat-green',
-    radioClass   : 'iradio_flat-green'
-  })*/
+  $("#id_tgl_ambil").val(data[8]);
+  $("#id_keterangan").val(data[9])
 }
 
 function showForm (actionselect, data) {
   //reset form
   $('form')[1].reset();
   if (actionselect == 0) {
-    $('#modal-default').find('.modal-title').text('New Transaksi')
+    $('#modal-default').find('.modal-title').text('New Transaksi Pengambilan')
     $("form .box-body :input").prop("disabled", false);
     $('#btnsave').text('Save')
     $('#btnsave').show()
     $('#btnreset').show()
-    $("form").attr('action', '/ekonomi/penjualankue/');
+    $("form").attr('action', '/ekonomi/pengambilankuesales/');
   } else if (actionselect == 1) {
-    $('#modal-default').find('.modal-title').text('Edit Transaksi')
+    $('#modal-default').find('.modal-title').text('Edit Transaksi Pengambilan')
     $("form .box-body :input").prop("disabled", false)
     setForm(data)
     $('#btnsave').text('Update')
     $('#btnsave').show()
     $('#btnreset').show()
-    $("form").attr('action', '/ekonomi/penjualankue/'+data[1]+'/edit/');
+    $("form").attr('action', '/ekonomi/pengambilankuesales/'+data[1]+'/edit/');
   } else if (actionselect == 2) {
-    $('#modal-default').find('.modal-title').text('Hapus Transaksi')
+    $('#modal-default').find('.modal-title').text('Hapus Transaksi Pengambilan')
     $("form .box-body :input").prop("disabled", true)
     setForm(data)
     $('#btnsave').text('Delete')
     $('#btnsave').show()
     $('#btnreset').hide()
-    $("form").attr('action', '/ekonomi/penjualankue/'+data[1]+'/delete/');
+    $("form").attr('action', '/ekonomi/pengambilankuesales/'+data[1]+'/delete/');
   } else if (actionselect == 4) {
     $('#modal-default').find('.modal-title').text('Data Transaksi')
     $("form .box-body :input").prop("disabled", true)
@@ -60,7 +49,7 @@ function showForm (actionselect, data) {
 $(function(){
   var table = $('#example1').DataTable({
     "columnDefs":[
-      {"targets":[1,3,5],
+      {"targets":[1,2,4],
     "visible":false}
   ],
   select: true,
@@ -77,19 +66,19 @@ $(function(){
   })
 
   //Date picker
-  /*$('#id_tgl_kirim').datepicker({
+  $('#id_tgl_ambil').datepicker({
+    autoclose: true
+  })
+
+  /*$('#id_tgl_penjualan').datepicker({
     autoclose: true
   })*/
 
-  $('#id_tgl_penjualan').datepicker({
-    autoclose: true
-  })
-
   //Flat red color scheme for iCheck
-  $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+  /*$('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
     checkboxClass: 'icheckbox_flat-green',
     radioClass   : 'iradio_flat-green'
-  })
+  })*/
 
   $('#example1 tbody').on( 'click', 'tr', function () {
         $(this).toggleClass('selected');

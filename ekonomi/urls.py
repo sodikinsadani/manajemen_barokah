@@ -12,4 +12,7 @@ urlpatterns = [
     path('penjualankue/', views.penjualanKue.as_view(), name='penjualankue'),
     path('penjualankue/<int:pk>/edit/', views.penjualankueEdit.as_view(), name='penjualankueEdit'),
     path('penjualankue/<int:pk>/delete/', views.penjualankueDelete.as_view(), name='penjualankueDelete'),
+    path('pengambilankuesales/', views.pengambilankuesalesKue.as_view(), name='pengambilankuesales'),
+    path('pengambilankuesales/<int:pk>/edit/', views.pengambilankuesalesEdit.as_view(), name='pengambilankuesalesEdit'),
+    path('pengambilankuesales/<int:pk>/delete/', views.pengambilankuesalesDelete.as_view(), name='pengambilankuesalesDelete'),
 ]
